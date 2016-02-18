@@ -1,0 +1,8 @@
+---
+# RedHat
+syslog_implementation: rsyslog
+syslog_package_names: 
+  - rsyslog
+syslog_service_name: rsyslog
+syslog_conf_path: "/etc/rsyslog.d"
+sentinel_collector_magic: "Red Hat Enterprise Linux"

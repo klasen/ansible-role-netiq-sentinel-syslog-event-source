@@ -1,0 +1,8 @@
+---
+# SLES < 12
+syslog_implementation: syslog-ng
+syslog_package_names: 
+  - syslog-ng
+syslog_service_name: syslog-ng
+#syslog_conf_path: "/etc/rsyslog.d"
+sentinel_collector_magic: "SUSE Linux Enterprise Server"

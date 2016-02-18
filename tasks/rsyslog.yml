@@ -1,0 +1,14 @@
+---
+
+- name: deploy rsyslog config for clients
+  become: true
+  template: 
+    src=rsyslog-remote.conf.j2 
+    dest={{ syslog_conf_path }}/sentinel.conf
+    owner=root 
+    group=root 
+    mode=0644 
+  notify: 
+    - restart rsyslog
+    - send magic message
+

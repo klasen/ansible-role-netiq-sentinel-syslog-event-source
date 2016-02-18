@@ -1,2 +1,6 @@
 ---
 # defaults file for netiq-sentinel-syslog-event-source
+sentinel_syslog_server: sentinel.example.com
+sentinel_syslog_port: 1468
+sentinel_syslog_protocol: tcp
+

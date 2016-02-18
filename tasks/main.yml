@@ -1,2 +1,21 @@
 ---
 # tasks file for netiq-sentinel-syslog-event-source
+- name: set OS dependent variables
+  tags:
+    - prereq
+  include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_distribution }}.yml"
+   - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_os_family }}.yml"
+   - default.yml
+
+- name: configure rsyslog
+  include: rsyslog.yml
+  when: syslog_implementation == 'rsyslog'
+
+- name: configure syslog-ng
+  include: syslog-ng.yml
+  when: syslog_implementation == 'syslog-ng'
+
