@@ -1,0 +1,19 @@
+---
+- name: add destination to syslog-ng config
+  become: true
+  lineinfile: 
+    dest=/etc/syslog-ng/syslog-ng.conf
+    line='destination d_sentinel { tcp("{{ sentinel_syslog_server }}" port({{ sentinel_syslog_port }})); };'
+  notify: 
+    - restart syslog
+    - send magic message
+
+- name: add log route to syslog-ng config
+  become: true
+  lineinfile: 
+    dest=/etc/syslog-ng/syslog-ng.conf
+    line='log { source(src); destination(d_sentinel); };'
+  notify: 
+    - restart syslog
+    - send magic message
+
