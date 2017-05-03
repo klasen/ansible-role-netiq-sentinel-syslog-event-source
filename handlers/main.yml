@@ -1,8 +1,12 @@
 ---
 # handlers file for netiq-sentinel-syslog-event-source
+- name: restart syslog
+  become: true
+  service: name=syslog state=restarted
+
 - name: restart rsyslog
   become: true
-  service: name={{ syslog_service_name }} state=restarted
+  service: name=rsyslog state=restarted
 
 - name: send magic message
-  command: /usr/bin/logger -t kernel {{ sentinel_collector_magic }}
+  command: logger -t kernel {{ sentinel_collector_magic }}

@@ -1,0 +1,12 @@
+---
+
+- name: deploy syslog-ng config for clients
+  blockinfile:
+    path: /etc/syslog-ng/syslog-ng.conf
+    block: |
+      destination d_sentinel { tcp( "{{ sentinel_syslog_server }}" port( {{ sentinel_syslog_port }} )); };
+      log { source(src); destination(d_sentinel); }; 
+  notify: 
+    - restart syslog
+    - send magic message
+
